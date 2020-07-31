@@ -10,6 +10,9 @@ connectDB();
 // PORT
 const port = process.env.PORT || 4000;
 
+// Allow read body values
+app.use(express.json());
+
 // Routes
 app.use("/api/users", require("./routes/users"));
 
