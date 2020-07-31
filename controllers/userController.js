@@ -1,8 +1,15 @@
 const bcrypt = require("bcrypt");
+const { validationResult } = require("express-validator");
 
 const User = require("../models/User");
 
 exports.newUser = async (req, res) => {
+  //Show error messages from express validator
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty())
+    return res.status(400).json({ errors: errors.array() });
+
   // Verify if user is already registered
   const { email, password } = req.body;
 
