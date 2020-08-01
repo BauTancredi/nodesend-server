@@ -5,6 +5,14 @@ const { check } = require("express-validator");
 const auth = require("../middleware/auth");
 const linksController = require("../controllers/linksController");
 
-router.post("/", auth, linksController.newLink);
+router.post(
+  "/",
+  [
+    check("name", "Upload a file").not().isEmpty(),
+    check("name_original", "Upload a file").not().isEmpty(),
+  ],
+  auth,
+  linksController.newLink
+);
 
 module.exports = router;
