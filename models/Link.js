@@ -17,6 +17,7 @@ const linksSchema = new Schema({
   },
   downloads: {
     type: Number,
+    default: 1,
   },
   author: {
     type: mongoose.Schema.Types.ObjectId,
@@ -25,6 +26,7 @@ const linksSchema = new Schema({
   },
   password: {
     type: String,
+    default: null,
   },
   created: {
     type: Date,
