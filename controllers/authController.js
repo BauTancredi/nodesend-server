@@ -42,4 +42,23 @@ exports.authenticateUser = async (req, res, next) => {
   }
 };
 
-exports.userAuthenticated = async (req, res) => {};
+exports.userAuthenticated = async (req, res, next) => {
+  const authHeader = req.get("Authorization");
+
+  if (authHeader) {
+    // Obtain token
+    const token = authHeader.split(" ")[1];
+
+    // Check token
+
+    try {
+      const user = jwt.verify(token, process.env.SECRET);
+      res.json({ user });
+    } catch (error) {
+      console.log(error);
+      console.log("JWT not valid");
+    }
+  }
+
+  return next();
+};
