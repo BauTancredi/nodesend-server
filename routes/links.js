@@ -4,6 +4,7 @@ const { check } = require("express-validator");
 
 const auth = require("../middleware/auth");
 const linksController = require("../controllers/linksController");
+const filesController = require("../controllers/filesController");
 
 router.post(
   "/",
@@ -15,6 +16,6 @@ router.post(
   linksController.newLink
 );
 
-router.get("/:url", linksController.obtainLink);
+router.get("/:url", linksController.obtainLink, filesController.deleteFile);
 
 module.exports = router;
