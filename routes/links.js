@@ -15,4 +15,6 @@ router.post(
   linksController.newLink
 );
 
+router.get("/:url", linksController.obtainLink);
+
 module.exports = router;

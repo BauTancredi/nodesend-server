@@ -44,3 +44,16 @@ exports.newLink = async (req, res, next) => {
     console.log(error);
   }
 };
+
+// Obtain link
+exports.obtainLink = async (req, res, next) => {
+  // Verify if the link exists
+  const link = await Links.findOne({ url: req.params.url });
+
+  if (!link) {
+    res.status(404).json({ msg: "The link is not valid" });
+    return next();
+  }
+
+  res.json({ file: file.name });
+};
