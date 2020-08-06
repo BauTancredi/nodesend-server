@@ -12,11 +12,11 @@ exports.newLink = async (req, res, next) => {
     return res.status(400).json({ errors: errors.array() });
 
   // Creating Link object
-  const { name_original, password } = req.body;
+  const { name_original, password, name } = req.body;
   const link = new Links();
 
   link.url = shortid.generate();
-  link.name = shortid.generate();
+  link.name = name;
   link.name_original = name_original;
   link.password = password;
 
