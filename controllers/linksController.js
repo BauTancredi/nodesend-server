@@ -57,22 +57,7 @@ exports.obtainLink = async (req, res, next) => {
 
   res.json({ file: link.name });
 
-  return;
-
-  // If downloads are = 1. Delete file
-  const { downloads, name } = link;
-  if (downloads === 1) {
-    // Delete the file
-    req.file = name;
-    // Delete entry from DB
-    await Links.findOneAndRemove(req.params.url);
-
-    next();
-  } else {
-    // If downloads are > 1. Substract 1
-    link.downloads--;
-    await link.save();
-  }
+  next();
 };
 
 exports.getAllLinks = async (req, res) => {
