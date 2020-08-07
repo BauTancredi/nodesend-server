@@ -24,8 +24,6 @@ exports.uploadFile = async (req, res) => {
   const upload = multer(multerConfig).single("file");
 
   upload(req, res, async (error) => {
-    console.log(req.file);
-
     if (!error) {
       res.json({ file: req.file.filename });
     } else {
