@@ -7,4 +7,6 @@ const filesController = require("../controllers/filesController");
 
 router.post("/", auth, filesController.uploadFile);
 
+router.get("/:file", filesController.download);
+
 module.exports = router;

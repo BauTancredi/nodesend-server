@@ -22,6 +22,9 @@ const port = process.env.PORT || 4000;
 // Allow read body values
 app.use(express.json());
 
+// Allow public folder
+app.use(express.static("uploads"));
+
 // Routes
 app.use("/api/users", require("./routes/users"));
 app.use("/api/auth", require("./routes/auth"));

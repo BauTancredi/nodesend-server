@@ -57,6 +57,8 @@ exports.obtainLink = async (req, res, next) => {
 
   res.json({ file: link.name });
 
+  return;
+
   // If downloads are = 1. Delete file
   const { downloads, name } = link;
   if (downloads === 1) {
