@@ -72,3 +72,12 @@ exports.obtainLink = async (req, res, next) => {
     await link.save();
   }
 };
+
+exports.getAllLinks = async (req, res) => {
+  try {
+    const links = await Links.find({}).select("url -_id");
+    res.json({ links });
+  } catch (error) {
+    console.log(error);
+  }
+};
