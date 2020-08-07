@@ -55,7 +55,7 @@ exports.obtainLink = async (req, res, next) => {
     return next();
   }
 
-  res.json({ file: link.name });
+  res.json({ file: link.name, password: false });
 
   next();
 };
@@ -66,5 +66,36 @@ exports.getAllLinks = async (req, res) => {
     res.json({ links });
   } catch (error) {
     console.log(error);
+  }
+};
+
+// Verifies if link has password
+exports.verifyPassword = async (req, res, next) => {
+  // Verify if the link exists
+  const link = await Links.findOne({ url: req.params.url });
+
+  if (!link) {
+    res.status(404).json({ msg: "The link is not valid" });
+    return next();
+  }
+
+  if (link.password) {
+    return res.json({ password: true, link: link.url });
+  }
+
+  next();
+};
+
+// Verifies if password is correct
+exports.verifyUserPassword = async (req, res, next) => {
+  const { url } = req.params;
+  const password = req.password;
+
+  const link = await Links.findOne({ url });
+
+  if (bcrypt.compareSync(password, link.password)) {
+    next();
+  } else {
+    res.status(401).json({ msg: "Incorrect Password" });
   }
 };
