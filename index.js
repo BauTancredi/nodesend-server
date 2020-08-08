@@ -31,14 +31,14 @@ const app = express();
 connectDB();
 
 // Allow CORS
-const optionsCORS = {
-  origin: [
-    "http://localhost:3000",
-    "https://admiring-jones-9b5088.netlify.app",
-  ],
-};
+// const optionsCORS = {
+//   origin: [
+//     "http://localhost:3000",
+//     "https://admiring-jones-9b5088.netlify.app",
+//   ],
+// };
 
-app.use(cors(optionsCORS));
+app.use(cors());
 
 // PORT
 const port = process.env.PORT || 4000;
