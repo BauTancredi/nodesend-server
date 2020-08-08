@@ -11,7 +11,7 @@ connectDB();
 
 // Allow CORS
 const optionsCORS = {
-  origin: process.env.FRONTEND_URL,
+  origin: "https://admiring-jones-9b5088.netlify.app",
 };
 
 app.use(cors(optionsCORS));
