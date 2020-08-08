@@ -89,9 +89,10 @@ exports.verifyPassword = async (req, res, next) => {
 // Verifies if password is correct
 exports.verifyUserPassword = async (req, res, next) => {
   const { url } = req.params;
-  const password = req.password;
+  const { password } = req.body;
 
   const link = await Links.findOne({ url });
+  console.log(link);
 
   if (bcrypt.compareSync(password, link.password)) {
     next();
